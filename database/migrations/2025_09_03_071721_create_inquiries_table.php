@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inquiry_type_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('status', [
+                'new',        // 신규
+                'in_progress',// 처리중
+                'waiting',    // 대기중 (고객 응답 필요)
+                'resolved',   // 해결됨
+                'closed'      // 종결됨
+            ])->default('new');
             $table->text('message');
             $table->timestamps();
         });
