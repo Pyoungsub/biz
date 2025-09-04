@@ -8,8 +8,11 @@ use Livewire\Component;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class ContactForm extends Component
 {
     /*
@@ -42,6 +45,7 @@ class ContactForm extends Component
     public $mobile;
     public $message;
     public $showVerificationForm = false;
+    public $verification_code = '';
     public function getInquiryTypesFromDB()
     {
         // Return [id => slug] array (or [id => name] depending on usage)
@@ -98,13 +102,30 @@ class ContactForm extends Component
             $this->dispatch('codeExpired'); // optional JS event
             return;
         }
-        if (Hash::check($this->inputCode, Cache::get($cacheKey))) {
-            $this->dispatch('codeVerified'); // optional JS event
+        if (Hash::check($this->verification_code, Cache::get($cacheKey))) {
             Cache::forget($cacheKey);
             // Now you can store the inquiry in DB
+            $user = User::where('email', $this->email)->first();
+            if(!$user)
+            {
+                $plainPassword = Str::random(12);
+                $hashedPassword = Hash::make($plainPassword);
+                $user = User::create([
+                    'name' => $this->name,
+                    'email' => $this->email,
+                    'mobile' => $this->mobile,
+                    'password' => $hashedPassword
+                ]);
+            }
+            $user->inquiries()->create([
+                'inquiry_type_id' => $this->inquiry_type_id,
+                'message' => $this->message
+            ]);
+            Auth::login($user, true);
+            return redirect()->route('inquiries');
         } else {
             //required add to rate limit as well
-            $this->dispatch('codeInvalid'); // optional JS event
+            $this->dispatch('invalidCode'); // optional JS event
         }
     }
     public function mount()

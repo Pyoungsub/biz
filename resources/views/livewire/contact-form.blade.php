@@ -7,7 +7,7 @@
         email:$wire.entangle("email"),
         mobile:$wire.entangle("mobile"),
         message:$wire.entangle("message"),
-        verification_code:"",
+        verification_code:$wire.entangle("verification_code"),
     }'
 >
     @if(!$showVerificationForm)
@@ -87,6 +87,9 @@
                 <x-action-message class="me-3 text-red-700" on="invalidCode">
                     {{ __('Invalid verification code. Please try again.') }}
                 </x-action-message>
+                <x-action-message class="me-3 text-red-700" on="unavailable">
+                    {{ __('Invalid verification code. Please try again.') }}
+                </x-action-message>
 
                 <div class="text-center">
                     <button type="submit"
@@ -98,12 +101,12 @@
                     </button>
                 </div>
 
-                <div class="text-center mt-4">
+                <!--div class="text-center mt-4">
                     <button type="button" wire:click="resendCode"
                         class="text-sm text-brand-600 hover:text-brand-700 font-medium transition-all duration-200">
                         인증 코드 재전송
                     </button>
-                </div>
+                </div-->
             </form>
         </div>
     @endif
