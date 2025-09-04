@@ -41,6 +41,7 @@ class ContactForm extends Component
     public $email;
     public $mobile;
     public $message;
+    public $showVerificationForm = false;
     public function getInquiryTypesFromDB()
     {
         // Return [id => slug] array (or [id => name] depending on usage)
@@ -60,6 +61,7 @@ class ContactForm extends Component
     }
     public function save()
     {
+        /*
         $key = 'submit-message:' . request()->ip();
         // Check if the action is rate limited
         if (RateLimiter::tooManyAttempts($key, 3)) {
@@ -70,6 +72,7 @@ class ContactForm extends Component
             return;
         }
         RateLimiter::hit($key, now()->diffInSeconds(now()->endOfDay()));
+        */
         $validated = $this->validate([ 
             'name' => 'required|min:2',
             'email' => 'required|email:rfc,dns',
@@ -78,12 +81,31 @@ class ContactForm extends Component
         ]);
         // Generate a 6-digit verification code
         $code = rand(100000, 999999);
-
+        
+        $code = 123456;
         // Store the hashed code in cache for 5 minutes
         $cacheKey = 'inquiry_verification:' . $validated['email'];
         Cache::put($cacheKey, Hash::make($code), now()->addMinutes(5));
         // Send the code via email
-        Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
+        //Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
+        $this->email = $validated['email'];
+        $this->showVerificationForm = true;
+    }
+    public function verifyCode()
+    {
+        $cacheKey = 'inquiry_verification:' . $this->email;
+        if (!Cache::has($cacheKey)) {
+            $this->dispatch('codeExpired'); // optional JS event
+            return;
+        }
+        if (Hash::check($this->inputCode, Cache::get($cacheKey))) {
+            $this->dispatch('codeVerified'); // optional JS event
+            Cache::forget($cacheKey);
+            // Now you can store the inquiry in DB
+        } else {
+            //required add to rate limit as well
+            $this->dispatch('codeInvalid'); // optional JS event
+        }
     }
     public function mount()
     {
