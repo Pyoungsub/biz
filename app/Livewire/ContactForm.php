@@ -65,7 +65,6 @@ class ContactForm extends Component
     }
     public function save()
     {
-        /*
         $key = 'submit-message:' . request()->ip();
         // Check if the action is rate limited
         if (RateLimiter::tooManyAttempts($key, 3)) {
@@ -76,7 +75,6 @@ class ContactForm extends Component
             return;
         }
         RateLimiter::hit($key, now()->diffInSeconds(now()->endOfDay()));
-        */
         $validated = $this->validate([ 
             'name' => 'required|min:2',
             'email' => 'required|email:rfc,dns',
@@ -85,13 +83,11 @@ class ContactForm extends Component
         ]);
         // Generate a 6-digit verification code
         $code = rand(100000, 999999);
-        
-        $code = 123456;
         // Store the hashed code in cache for 5 minutes
         $cacheKey = 'inquiry_verification:' . $validated['email'];
         Cache::put($cacheKey, Hash::make($code), now()->addMinutes(5));
         // Send the code via email
-        //Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
+        Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
         $this->email = $validated['email'];
         $this->showVerificationForm = true;
     }
