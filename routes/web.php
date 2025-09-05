@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire;
 Route::get('/', function () {
     //return view('welcome');
     return view('home');
 });
+Route::get('/login/{provider}', [SocialLoginController::class, 'redirect'])->name('social_login');
+Route::get('/login/{provider}/callback', [SocialLoginController::class, 'callback']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'kakao' => [
+        'client_id' => env('KAKAO_CLIENT_ID'),
+        'client_secret' => env('KAKAO_CLIENT_SECRET'),
+        'redirect' => env('KAKAO_REDIRECT_URI')
+    ],
 ];

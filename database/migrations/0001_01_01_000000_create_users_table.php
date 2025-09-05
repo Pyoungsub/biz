@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('mobile');
             $table->string('password');
+            $table->string('provider')->nullable();      // kakao, google, facebook, etc.
+            $table->string('provider_id')->nullable();   // unique ID from the provider
+            $table->string('avatar')->nullable();        // profile image from social login
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
