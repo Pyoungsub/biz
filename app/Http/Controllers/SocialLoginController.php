@@ -17,7 +17,7 @@ class SocialLoginController extends Controller
 {
     public function redirect($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->with(['prompt' => 'login'])->redirect();
     }
 
     public function callback($provider)
@@ -32,6 +32,7 @@ class SocialLoginController extends Controller
             $user = User::where('email', $socialUser->getEmail())->first();
 
             if (!$user) {
+                \Log::info($socialUser->getEmail());
                 $password = Str::random(12);
                 $user = User::create([
                     'name' => $socialUser->getName() ?? $socialUser->getNickname(),
@@ -46,11 +47,11 @@ class SocialLoginController extends Controller
 
             Auth::login($user, true);
     
-            return redirect()->route('/');
+            return redirect('/');
     
         } catch (\Exception $e) {
             Log::error("{$provider} login error: " . $e->getMessage());
-            return redirect()->route('/')->with('error', 'Social login failed. Please try again.');
+            return redirect('/')->with('error', 'Social login failed. Please try again.');
         }
     }
 }

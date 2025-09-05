@@ -325,7 +325,12 @@
   <footer class="py-10 border-t border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a class="font-extrabold tracking-tight" href="#">Groupket</a>
+        <a class="flex items-center gap-2 font-extrabold text-lg tracking-tight" href="/">
+          <span class="inline-flex h-8 w-8 rounded-xl bg-brand-600 text-white items-center justify-center shadow-soft">Biz</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="180.15" height="44" class="fill-slate-800 dark:fill-slate-200" viewBox="0 0 180.15 44">
+            <text x="0" y="35" font-family="'Orbitron', sans-serif" font-weight="800" font-size="35">Groupket</text>
+          </svg>
+        </a>
         <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 dark:text-slate-300">
           <a href="#features" class="hover:text-brand-600">Features</a>
           <a href="#pricing" class="hover:text-brand-600">Pricing</a>

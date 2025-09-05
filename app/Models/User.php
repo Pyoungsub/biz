@@ -30,6 +30,8 @@ class User extends Authenticatable
         'email',
         'mobile',
         'password',
+        'provider',
+        'provider_id'
     ];
 
     /**
