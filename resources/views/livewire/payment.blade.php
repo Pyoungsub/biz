@@ -2,80 +2,44 @@
     <script src="https://js.tosspayments.com/v2/standard"></script>
 @endpush
 <div class="max-w-7xl mx-auto">
-    <div>
-        <input type="checkbox" id="coupon-box" />
-        <label for="coupon-box"> 5,000원 쿠폰 적용 </label>
-    </div>
-    <!-- 결제 UI -->
-    <div id="payment-method"></div>
-    <!-- 이용약관 UI -->
-    <div id="agreement"></div>
     <!-- 결제하기 버튼 -->
-    <button class="button w-full bg-brand-800" id="payment-button" style="margin-top: 30px">결제하기</button>
-
+    <button class="button" style="margin-top: 30px" onclick="requestPayment()">결제하기</button>
     <script>
-        console.log(window.location.origin);
-    main();
+      // ------  SDK 초기화 ------
+      const clientKey = "{{ config('services.toss.client_key') }}";
+      const customerKey = "{{ auth()->user()->email }}";
+      const tossPayments = TossPayments(clientKey);
+      // 회원 결제
+      // @docs https://docs.tosspayments.com/sdk/v2/js#tosspaymentspayment
+      const payment = tossPayments.payment({ customerKey });
+      // 비회원 결제
+      // const payment = tossPayments.payment({customerKey: TossPayments.ANONYMOUS})
 
-    async function main() {
-        const button = document.getElementById("payment-button");
-        const coupon = document.getElementById("coupon-box");
-        // ------  결제위젯 초기화 ------
-        const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
-        const tossPayments = TossPayments(clientKey);
-        // 회원 결제
-        const customerKey = "GgEu97krEwA41GyyoaVMy";
-        const widgets = tossPayments.widgets({
-        customerKey,
+      // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+      // @docs https://docs.tosspayments.com/sdk/v2/js#paymentrequestpayment
+      async function requestPayment() {
+        // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
+        // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
+        await payment.requestPayment({
+          method: "CARD", // 카드 결제
+          amount: {
+            currency: "KRW",
+            value: {{ $amount }},
+          },
+          orderId: "{{ $order_id }}", // 고유 주문번호
+          orderName: "{{ $order_name }}",
+          successUrl: "{{ config('services.toss.success_url') }}", // 결제 요청이 성공하면 리다이렉트되는 URL
+          failUrl: "{{ config('services.toss.fail_url') }}", // 결제 요청이 실패하면 리다이렉트되는 URL
+          customerEmail: "{{ auth()->user()->email }}",
+          customerName: "{{ auth()->user()->name }}",
+          // 카드 결제에 필요한 정보
+          card: {
+            useEscrow: false,
+            flowMode: "DEFAULT", // 통합결제창 여는 옵션
+            useCardPoint: false,
+            useAppCardOnly: false,
+          },
         });
-        // 비회원 결제
-        // const widgets = tossPayments.widgets({ customerKey: TossPayments.ANONYMOUS });
-
-        // ------ 주문의 결제 금액 설정 ------
-        await widgets.setAmount({
-        currency: "KRW",
-        value: {{$amount}},
-        });
-
-        await Promise.all([
-        // ------  결제 UI 렌더링 ------
-        widgets.renderPaymentMethods({
-            selector: "#payment-method",
-            variantKey: "DEFAULT",
-        }),
-        // ------  이용약관 UI 렌더링 ------
-        widgets.renderAgreement({ selector: "#agreement", variantKey: "AGREEMENT" }),
-        ]);
-/*
-        // ------  주문서의 결제 금액이 변경되었을 경우 결제 금액 업데이트 ------
-        coupon.addEventListener("change", async function () {
-            if (coupon.checked) {
-                await widgets.setAmount({
-                currency: "KRW",
-                value: 50000 - 5000,
-                });
-
-                return;
-            }
-
-            await widgets.setAmount({
-                currency: "KRW",
-                value: 50000,
-            });
-        });
-*/
-        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-        button.addEventListener("click", async function () {
-            await widgets.requestPayment({
-                orderId: "{{ $order_id }}",
-                orderName: "{{ $order_name }}",
-                successUrl: "{{ config('services.toss.success_url') }}",
-                failUrl: "{{ config('services.toss.fail_url') }}",
-                customerEmail: "{{ auth()->user()->email }}",
-                customerName: "{{ auth()->user()->name }}",
-            });
-            
-        });
-    }
+      }
     </script>
 </div>

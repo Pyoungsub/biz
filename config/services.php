@@ -44,5 +44,6 @@ return [
     'toss' => [
         'success_url' => env('TOSS_SUCCESS_URL'),
         'fail_url' => env('TOSS_FAIL_URL'),
+        'client_key' => env('TOSS_CLIENT_KEY'),
     ],
 ];
