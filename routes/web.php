@@ -21,4 +21,5 @@ Route::middleware([
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+    Route::get('payment/{id}', Livewire\Payment::class)->name('payment');
 });

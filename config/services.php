@@ -40,4 +40,9 @@ return [
         'client_secret' => env('KAKAO_CLIENT_SECRET'),
         'redirect' => env('KAKAO_REDIRECT_URI')
     ],
+
+    'toss' => [
+        'success_url' => env('TOSS_SUCCESS_URL'),
+        'fail_url' => env('TOSS_FAIL_URL'),
+    ],
 ];
