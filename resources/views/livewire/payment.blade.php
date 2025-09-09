@@ -1,9 +1,46 @@
 @push('scripts')
     <script src="https://js.tosspayments.com/v2/standard"></script>
 @endpush
-<div class="max-w-7xl mx-auto">
-    <!-- 결제하기 버튼 -->
-    <button class="button" style="margin-top: 30px" onclick="requestPayment()">결제하기</button>
+<div class="max-w-5xl mx-auto">
+  <section class="bg-gray-50 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        
+        <!-- 이미지 -->
+        <div class="flex-1">
+          <img src="{{ asset('images/payment.jpg') }}" 
+              alt="Secure Payment" 
+              class="rounded-xl shadow-lg w-full object-cover">
+        </div>
+
+        <!-- 상품 설명 -->
+        <div class="flex-1 bg-white rounded-2xl shadow-soft p-6 w-full md:w-auto">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Biz Groupket Subscription</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between border-b pb-2">
+              <span>1 Month</span>
+              <span class="font-semibold text-gray-900">₩220,000</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <span>6 Months</span>
+              <span class="font-semibold text-gray-900">₩990,000</span>
+            </li>
+            <li class="flex justify-between">
+              <span>1 Year</span>
+              <span class="font-semibold text-gray-900">₩1,320,000</span>
+            </li>
+          </ul>
+
+          <p class="text-gray-500 text-sm mt-4">
+            All payments are secure and encrypted. You can receive a tax invoice after purchase.
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <div class="mt-4 px-4 sm:px-0">
+    <button class="button w-full rounded-lg bg-brand-600 hover:bg-brand-700 py-2 text-white font-bold" onclick="requestPayment()">결제하기</button>
     <script>
       // ------  SDK 초기화 ------
       const clientKey = "{{ config('services.toss.client_key') }}";
@@ -42,4 +79,16 @@
         });
       }
     </script>
+  </div>
+  <x-sla />
+    
+
+
+   
+
+
+
+   
+
+    
 </div>
