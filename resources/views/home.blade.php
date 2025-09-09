@@ -193,7 +193,7 @@
             <li>6개월간 사용해보시고 1년 계약하는 기업으로</li>
             <li>성장하길 응원하는 할인입니다.</li>
           </ul>
-          <a href="{{route('payment', ['id' => 3])}}" class="mt-6 inline-flex w-full justify-center px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold">6개월 계약</a>
+          <a href="{{route('payment', ['id' => 2])}}" class="mt-6 inline-flex w-full justify-center px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold">6개월 계약</a>
         </div>
         <!-- Pro -->
         <div class="p-6 rounded-2xl border-2 border-brand-600 bg-gradient-to-b from-white to-brand-50 dark:from-slate-900 dark:to-slate-900/60 shadow-soft">
@@ -206,7 +206,7 @@
             <li>1년 서비스 구입을 하는 조건으로</li>
             <li>높은 할인율을 보장받습니다.</li>
           </ul>
-          <a href="{{route('payment', ['id' => 2])}}" class="mt-6 inline-flex w-full justify-center px-4 py-2.5 rounded-xl bg-brand-600 text-white hover:bg-brand-700 font-semibold">1년 계약</a>
+          <a href="{{route('payment', ['id' => 3])}}" class="mt-6 inline-flex w-full justify-center px-4 py-2.5 rounded-xl bg-brand-600 text-white hover:bg-brand-700 font-semibold">1년 계약</a>
         </div>
         
         <!-- Free -->

@@ -16,4 +16,8 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function payment_history()
+    {
+        return $this->hasOne(PaymentHistory::class);
+    }
 }
