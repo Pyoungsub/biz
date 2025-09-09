@@ -165,8 +165,9 @@
           <div class="relative rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-soft bg-white dark:bg-slate-900">
             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop" alt="Dashboard screenshot" class="w-full h-96 object-cover"/>
             <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white flex items-center justify-between">
-              <p class="font-medium">Dashboard overview</p>
-              <a href="#" class="text-sm underline underline-offset-2">Read docs</a>
+              <p class="font-medium">블로그 개발은 저희에게 맡기세요</p>
+              <!--p class="font-medium">Dashboard overview</p-->
+              <!--a href="#" class="text-sm underline underline-offset-2">Read docs</a-->
             </div>
           </div>
         </div>
