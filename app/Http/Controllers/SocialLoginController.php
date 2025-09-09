@@ -47,7 +47,7 @@ class SocialLoginController extends Controller
 
             Auth::login($user, true);
     
-            return redirect('/');
+            return redirect()->intended('/dashboard');
     
         } catch (\Exception $e) {
             Log::error("{$provider} login error: " . $e->getMessage());
