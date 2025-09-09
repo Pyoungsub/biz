@@ -58,7 +58,7 @@ class TossPaymentsController extends Controller
             );
             if($create_payment_history)
             {
-                return redirect()->route('services');
+                return redirect()->route('plans');
             }
         }
     }

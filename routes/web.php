@@ -23,7 +23,7 @@ Route::middleware([
         return view('admin.dashboard');
     })->name('admin.dashboard');
     Route::get('payment/{id}', Livewire\Payment::class)->name('payment');
-    Route::get('services', Livewire\Services::class)->name('services');
+    Route::get('plans', Livewire\Plans::class)->name('plans');
 });
 
 Route::get('/toss/success', [TossPaymentsController::class, 'success']);

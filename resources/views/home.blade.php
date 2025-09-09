@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="ko" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,13 +13,11 @@
 
   <!-- Styles -->
   @livewireStyles
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
     .glass { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   </style>
 </head>
-<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+<body class="font-inter bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
   <!-- Top bar -->
   <div class="bg-gradient-to-r from-brand-600 to-brand-800 text-white text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">

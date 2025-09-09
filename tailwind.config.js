@@ -16,6 +16,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 orbitron: ['Orbitron', 'sans-serif'],
+                inter: ['Inter','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','Apple Color Emoji','Segoe UI Emoji','sans-serif',]
             },
             colors: {
                 brand: {
