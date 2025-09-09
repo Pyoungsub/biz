@@ -33,7 +33,7 @@ class SendSocialLoginPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to Wonjobs - Your Temporary Password',
+            subject: 'Welcome to Groupket - Your Temporary Password',
         );
     }
 
