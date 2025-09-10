@@ -42,7 +42,13 @@ class SetPaymentSite extends Component
     }
     public function render()
     {
-        $sites = auth()->user()->sites()->paginate(10);
+        $sites = auth()->user()->sites()->whereHas('site_payments', function ($query) {
+            $query->whereNotNull('end_date');
+        })
+        ->orWhereDoesntHave('site_payments') // site_payments가 없어도 포함
+        ->with(['site_payments' => function ($query) {
+            $query->latest();
+        }])->paginate(10);
         return view('livewire.set-payment-site', ['sites' => $sites]);
     }
 }

@@ -1,19 +1,18 @@
-<x-app-layout>
-    <div class="min-h-[60vh] flex items-center justify-center px-6 py-12">
-        <div class="text-center">
-            <h1 class="text-9xl font-extrabold text-gray-800 dark:text-gray-100">404</h1>
-            <p class="mt-4 text-xl font-semibold text-gray-600 dark:text-gray-300">
-                {{ $exception->getMessage() ?: 'Page Not Found' }}
-            </p>
-            <p class="mt-2 text-gray-500 dark:text-gray-400">
-                Sorry, the page you are looking for could not be found.
-            </p>
-            <div class="mt-6">
-                <a href="{{ url('/') }}"
-                   class="inline-block px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition">
-                    Go Back Home
-                </a>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+    <div class="text-center">
+        <h1 class="text-8xl font-extrabold text-gray-800 dark:text-gray-100 mb-4 animate-pulse">404</h1>
+        <p class="text-2xl text-gray-600 dark:text-gray-400 mb-6">Oops! The page you are looking for does not exist.</p>
+        <a href="{{ url('/') }}" class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+            Go back home
+        </a>
     </div>
-</x-app-layout>
+</body>
+</html>
