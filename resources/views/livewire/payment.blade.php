@@ -11,10 +11,10 @@
                 <h1 class="text-white text-3xl md:text-4xl font-bold">Secure Checkout</h1>
             </div>
         </div>
-        <div class="md:w-1/2 flex flex-col justify-center p-8 space-y-6">
+        <div class="w-full md:w-1/2 flex flex-col justify-center p-8 space-y-6">
             <!-- 선택된 플랜 카드 -->
-            <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center space-y-4">
-                <h2 class="text-3xl font-bold text-gray-800 capitalize">{{$order_name}}</h2>
+            <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center space-y-4 w-full">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 capitalize">{{$order_name}}</h2>
                 <p class="text-gray-600 text-center">{{__('For growing blogs. Save more and enjoy premium features.')}}</p>
                 <div class="text-4xl font-extrabold text-blue-600">￦{{number_format($amount)}}</div>
                 <button onclick="requestPayment()" class="bg-blue-600 text-white w-full py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
@@ -22,14 +22,14 @@
                 </button>
                 <!-- 결제 관련 안내 -->
                 <p class="text-sm text-gray-400 mt-2 text-center">
-                {{__('You will be redirected to a secure TossPayments page to complete your purchase.')}}
-                </p>
+                {{__('You will be redirected to a secure TossPayments page to complete your purchase.')}}</p>
                 <div class="mt-2 flex items-center justify-end gap-2">
                     <x-sla />
                     <x-refund-policy />    
                 </div>
             </div>
         </div>
+
     </div>  
     <script>
         // ------  SDK 초기화 ------
