@@ -1,6 +1,6 @@
 <div x-data="{ open: false }" class="">
     <!-- SLA 모달 열기 버튼 -->
-    <button @click="open = true" class="text-gray-500 text-sm transition">SLA</button>
+    <button @click="open = true" class="text-gray-500 text-sm transition">환불약관</button>
 
     <!-- 모달 배경 -->
     <div x-show="open" x-transition.opacity

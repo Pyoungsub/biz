@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Plan;
 class Payment extends Component
 {
+    public $id;
     public $order_name;
     public $order_id;
     public $amount;
@@ -16,7 +17,7 @@ class Payment extends Component
         if (! $plan) {
             abort(404, 'Plan not found.');
         }
-        $this->order_name = $plan->name.'('.$plan->duration_months.' months)';
+        $this->order_name = $plan->name.' ('.$plan->duration_months.' months)';
         $payment = auth()->user()
             ->payments()
             ->where('plan_id', $id)
@@ -33,6 +34,7 @@ class Payment extends Component
                 'amount' => $amount
             ]);
         }
+        $this->id = $id;
         $this->order_id = $payment->order_id; // already clean (no dashes)
         $this->amount = $payment->amount;
     }
