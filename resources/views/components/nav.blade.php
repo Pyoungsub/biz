@@ -128,13 +128,13 @@
     const openMenu = document.getElementById('openMenu');
 
     function setTheme(dark) {
-    if (dark) {
-        root.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        root.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-    }
+        if (dark) {
+            root.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            root.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
     }
 
     // Init
@@ -143,11 +143,11 @@
     setTheme(saved ? saved === 'dark' : prefersDark);
 
     toggle.addEventListener('click', () => {
-    setTheme(!root.classList.contains('dark'));
+        setTheme(!root.classList.contains('dark'));
     });
 
     // Mobile menu
     openMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('hidden');
     });
 </script>

@@ -20,4 +20,8 @@ class Payment extends Model
     {
         return $this->hasOne(PaymentHistory::class);
     }
+    public function site_payment()
+    {
+        return $this->hasOne(SitePayment::class);
+    }
 }

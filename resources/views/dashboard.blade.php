@@ -1,11 +1,11 @@
 <x-app-layout>
-    {{--
+    
         <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    {{--
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -15,7 +15,7 @@
     </div>
         --}}
     
-    <div class="min-h-[calc(100vh-65px)] bg-gray-50 p-4 md:p-8 flex flex-col md:flex-row md:space-x-6 max-w-7xl mx-auto">
+    <div class="p-4 md:p-8 flex flex-col md:flex-row md:space-x-6 max-w-7xl mx-auto">
   <!-- 구독/결제 정보 -->
   <div class="md:w-1/3 w-full mb-6 md:mb-0">
     <div class="bg-white rounded-2xl shadow p-6 flex flex-col space-y-4">

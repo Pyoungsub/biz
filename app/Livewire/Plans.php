@@ -10,7 +10,7 @@ class Plans extends Component
     use WithPagination;
     public function render()
     {
-        $plans = auth()->user()->payments()->paginate(10);
-        return view('livewire.plans', ['plans' => $plans]);
+        $payments = auth()->user()->payments()->with('site_payment.site')->whereHas('payment_history')->paginate(10);
+        return view('livewire.plans', ['payments' => $payments]);
     }
 }
