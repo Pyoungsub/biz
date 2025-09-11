@@ -23,7 +23,7 @@
                         <label for="topic" class="block text-sm font-medium text-gray-700 dark:text-gray-300">문의 유형</label>
                         <select x-model="inquiry_type_id" id="topic" name="topic"
                             class="mt-1 block w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:ring-opacity-50 transition-all duration-200">
-                            <option value="">선택해주세요</option>
+                            <option value="" disabled selected>선택해주세요</option>
                             <template x-for="inquiry_type in inquiryTypes" :key="inquiry_type.id">
                                 <option :value="inquiry_type.id" x-text="inquiry_type.inquiry_type"></option>
                             </template>
