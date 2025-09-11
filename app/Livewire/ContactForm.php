@@ -39,7 +39,7 @@ class ContactForm extends Component
     }
     */
     public $inquiry_types = [];
-    public $inquiry_type_id;
+    public $inquiry_type_id = '';
     public $name;
     public $email;
     public $mobile;
