@@ -79,4 +79,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Site::class);
     }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
 }

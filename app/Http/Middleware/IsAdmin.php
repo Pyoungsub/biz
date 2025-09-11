@@ -14,7 +14,6 @@ class IsAdmin
         if (!Auth::check() || !Auth::user()->admin) {
             abort(403, 'Unauthorized');
         }
-
         return $next($request);
     }
 }

@@ -18,28 +18,30 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <x-banner />
-        <div class="min-h-screen bg-gray-100">
-            <x-admin-navbar />
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
+        <div x-data="{ open: false, activeMenu: null }" class="flex h-screen bg-gray-100 font-sans">
+            <x-admin-sidebar />
+            <!-- Main content -->
+            <div class="flex-1 ml-0 md:ml-64">
+                <!-- Top bar -->
+                <header class="flex items-center justify-between h-16 px-4 bg-white border-b shadow-md md:hidden">
+                    <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                    <h1 class="font-bold text-lg">Admin Panel</h1>
                 </header>
-            @endif
-            <!-- Page Content -->
-            <main>
-                <div class="flex">
-                    <x-admin-sidebar />
-                    <div class="w-full">
-                        {{ $slot }}
-                    </div>
-                </div>
-            </main>
-        </div>
 
+                <!-- Page content -->
+                <main class="p-6">
+                    @if (isset($header))
+                        <h2 class="text-2xl font-semibold mb-4">{{ $header }}</h2>
+                    @endif
+                    {{ $slot }}
+                </main>
+            </div>
+        </div>
         @stack('modals')
 
         @livewireScripts

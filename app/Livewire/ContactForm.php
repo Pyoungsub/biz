@@ -76,7 +76,7 @@ class ContactForm extends Component
         }
         RateLimiter::hit($key, now()->diffInSeconds(now()->endOfDay()));
         $validated = $this->validate([ 
-            'inquiry_type_id' => 'required|exists:inquiry_type,id',
+            'inquiry_type_id' => 'required|exists:inquiry_types,id',
             'name' => 'required|min:2',
             'email' => 'required|email:rfc,dns',
             'mobile' => ['required', 'regex:/^(01[0-9])[-]?[0-9]{3,4}[-]?[0-9]{4}$/'],
