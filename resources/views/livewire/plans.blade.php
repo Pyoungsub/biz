@@ -3,12 +3,12 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Plans</h2>
     </x-slot>
     <!-- List -->
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div wire:loading.flex class="justify-center py-12">
             <div class="h-8 w-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" wire:loading.remove>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" wire:loading.remove>
             @forelse($payments as $payment)
                 <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm hover:shadow-md transition">
                     <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 capitalize">{{ $payment->plan->name }}</h2>
