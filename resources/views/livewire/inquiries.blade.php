@@ -1,14 +1,15 @@
-<section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+<section class="">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Inquiries</h2>
+    </x-slot>
+    <div class="mt-8 max-w-7xl mx-auto px-4 sm:px-6">
         <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-8 sm:p-10 bg-gradient-to-br from-brand-50 to-white dark:from-slate-900 dark:to-slate-900 shadow-soft">
-            
             <div class="mb-8 text-center">
                 <h3 class="text-2xl font-extrabold tracking-tight">내가 접수한 문의사항</h3>
                 <p class="text-slate-600 dark:text-slate-300 mt-2">
                     고객과의 소통이 기업의 가치를 만듭니다. 지금까지 접수된 문의 내역을 확인하세요.
                 </p>
             </div>
-
             <div class="overflow-x-auto">
                 <table class="min-w-full border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
                     <thead class="bg-slate-100 dark:bg-slate-800">

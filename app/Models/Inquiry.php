@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inquiry extends Model
 {
     //
-    protected $fillable = ['inquiry_type_id', 'user_id', 'message'];
+    protected $fillable = ['inquiry_type_id', 'user_id', 'message', 'status'];
     public function inquiry_type()
     {
         return $this->belongsTo(InquiryType::class);

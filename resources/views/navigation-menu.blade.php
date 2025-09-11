@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('plans') }}" :active="request()->routeIs('plans')">
                         {{ __('Plans') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('inquiries') }}" :active="request()->routeIs('inquiries')">
+                        {{ __('Inquiries') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -115,6 +118,14 @@
                                 </x-dropdown-link>
                             @endif
 
+                            @if(Auth::user()->admin)
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Manage Site') }}
+                                </div>
+                                <x-dropdown-link href="{{ route('admin.dashboard') }}">
+                                    {{ __('Admin') }}
+                                </x-dropdown-link>
+                            @endif
                             <div class="border-t border-gray-200"></div>
 
                             <!-- Authentication -->
@@ -148,6 +159,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('plans') }}" :active="request()->routeIs('plans')">
+                {{ __('Plans') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('inquiries') }}" :active="request()->routeIs('inquiries')">
+                {{ __('Inquiries') }}
             </x-responsive-nav-link>
         </div>
 
