@@ -16,4 +16,8 @@ class Site extends Model
     {
         return $this->hasMany(SitePayment::class);
     }
+    public function last_site_payment()
+    {
+        return $this->hasOne(SitePayment::class)->latest();
+    }
 }

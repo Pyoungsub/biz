@@ -26,6 +26,12 @@ Route::middleware([
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
+        Route::get('/admin/sites', function () {
+            return view('admin.sites');
+        })->name('admin.sites');
+        Route::get('/admin/plans', function () {
+            return view('admin.plans');
+        })->name('admin.plans');
         Route::get('/admin/inquiries', function () {
             return view('admin.inquiries');
         })->name('admin.inquiries');
