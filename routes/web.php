@@ -35,6 +35,9 @@ Route::middleware([
         Route::get('/admin/inquiries', function () {
             return view('admin.inquiries');
         })->name('admin.inquiries');
+        Route::get('/admin/servers', function () {
+            return view('admin.servers');
+        })->name('admin.servers');
     });
 });
 

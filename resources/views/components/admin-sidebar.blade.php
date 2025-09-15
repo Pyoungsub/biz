@@ -50,6 +50,10 @@
             <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
             Inquiries
         </a>
+        <a href="{{route('admin.servers')}}" class="flex items-center px-6 py-3 rounded-lg text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
+            <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            Servers
+        </a>
         
         <!-- Settings -->
         <a href="#settings" class="flex items-center px-6 py-3 rounded-lg text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">

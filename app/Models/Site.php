@@ -20,4 +20,8 @@ class Site extends Model
     {
         return $this->hasOne(SitePayment::class)->latest();
     }
+    public function dns_record()
+    {
+        return $this->hasOne(DnsRecord::class);
+    }
 }

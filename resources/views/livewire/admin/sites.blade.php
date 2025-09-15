@@ -1,4 +1,9 @@
-<div>
+<div
+    x-data='{
+        servers:@json($servers)
+    }'
+    x-init="console.log(servers)"
+>
     @if(count($sites)>0)
         <div class="mt-4">
             @foreach($sites as $site)
@@ -9,10 +14,10 @@
                     </div>
                     <p class="text-gray-600 text-sm">{{$site->site}}</p>
                     <div class="text-xs text-gray-500 space-y-1">
-                        <p><span class="font-medium">site Type:</span> 2</p>
-                        <p><span class="font-medium">User ID:</span> 2</p>
-                        <p><span class="font-medium">Created At:</span> 2025-09-11 06:06:36</p>
-                        <p><span class="font-medium">Updated At:</span> 2025-09-11 06:06:36</p>
+                        <p><span class="font-medium">User Name:</span> {{$site->user->name}}</p>
+                        <p><span class="font-medium">User Email:</span> {{$site->user->email}}</p>
+                        <p><span class="font-medium">Created At:</span> {{$site->last_site_payment->created_at}}</p>
+                        <p><span class="font-medium">Updated At:</span> {{$site->last_site_payment->updated_at}}</p>
                     </div>
                     <div class="flex items-center justify-end gap-2 text-sm">
 
