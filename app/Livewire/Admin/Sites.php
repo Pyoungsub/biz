@@ -36,9 +36,11 @@ class Sites extends Component
     public function render()
     {
         $sites = Site::with(['user', 'last_site_payment', 'dns_record.server'])
+        /*
         ->whereHas('site_dns_setting', function ($query) {
-            $query->where('status', 'confirmed'); // fixed
+            $query->where('status', 'confirmed');
         })
+        */
         ->whereHas('site_payments', function ($query) {
             $query->whereNull('end_date');
         })->latest()->paginate(10);
