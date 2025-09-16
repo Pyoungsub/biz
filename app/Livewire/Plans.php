@@ -21,6 +21,7 @@ class Plans extends Component
             'plan:id,name,duration_months',
             'site_payment:id,site_id,payment_id',
             'site_payment.site:id,site',
+            'site_payment.site.last_site_payment:start_date,end_date',
             'site_payment.site.dns_record:id,site_id,server_id',
             'site_payment.site.dns_record.server:id,ip_address',
             'site_payment.site.site_dns_setting:id,site_id,status'
