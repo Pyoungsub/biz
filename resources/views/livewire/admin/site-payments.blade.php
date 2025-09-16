@@ -3,7 +3,6 @@
         servers:@json($servers),
         server_id:$wire.entangle("server_id")
     }'
-    x-init="console.log(servers)"
 >
     @if(count($sites)>0)
         <div class="mt-4 space-y-4">
