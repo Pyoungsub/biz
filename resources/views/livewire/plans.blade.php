@@ -14,6 +14,7 @@
                     <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 capitalize">{{ $payment->plan->name }}</h2>
                     @if($payment->site_payment)
                         <p>{{$payment->site_payment->site->site}}</p>
+                        <p class="text-gray-600 text-sm">{{$payment->site_payment->site->dns_record->server->ip_address}}</p>
                     @else
                         <button x-on:click="$dispatch('set-payment-site', {paymentId: {{$payment->id}} })">url 등록하기</button>
                     @endif

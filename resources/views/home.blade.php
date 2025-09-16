@@ -298,7 +298,7 @@
           <a href="#" class="hover:text-brand-600">Terms</a>
           <a href="#" class="hover:text-brand-600">Privacy</a>
         </nav>
-        <p class="text-xs text-slate-500">© <span>2023</span> Groupket. All rights reserved.</p>
+        <p class="text-xs text-slate-500">© <span x-data x-text="new Date().getFullYear()"></span> Groupket. All rights reserved.</p>
       </div>
     </div>
   </footer>
