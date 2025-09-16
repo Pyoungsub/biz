@@ -20,7 +20,10 @@ class Inquiries extends Component
     {
         $inquiry = Inquiry::find($id);
         if ($inquiry) {
-            $inquiry->update(['case_manager_id' => auth()->user()->id, 'status' => $status]);
+            $inquiry->update([
+                'status' => $status,
+                'case_manager_id' => $status === 'new' ? null : auth()->id(),
+            ]);
         }
     }
     public function render()

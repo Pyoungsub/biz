@@ -34,7 +34,7 @@
                 </header>
 
                 <!-- Page content -->
-                <main class="p-6 pt-20">
+                <main class="p-6 pt-20 sm:pt-6">
                     @if (isset($header))
                         <h2 class="text-2xl font-semibold mb-4">{{ $header }}</h2>
                     @endif
