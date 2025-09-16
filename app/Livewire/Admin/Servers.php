@@ -31,7 +31,7 @@ class Servers extends Component
     }
     public function render()
     {
-        $servers = Server::withCount('dns_records')->paginate(10);
+        $servers = Server::withCount('dns_records')->latest()->paginate(10);
         return view('livewire.admin.servers', ['servers' => $servers]);
     }
 }

@@ -24,4 +24,8 @@ class Site extends Model
     {
         return $this->hasOne(DnsRecord::class);
     }
+    public function site_dns_setting()
+    {
+        return $this->hasOne(SiteDnsSetting::class);
+    }
 }

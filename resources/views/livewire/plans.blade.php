@@ -14,7 +14,25 @@
                     <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 capitalize">{{ $payment->plan->name }}</h2>
                     @if($payment->site_payment)
                         <p>{{$payment->site_payment->site->site}}</p>
-                        <p class="text-gray-600 text-sm">{{$payment->site_payment->site->dns_record->server->ip_address}}</p>
+                        <div class="flex items-center gap-2">
+                            <p class="text-gray-600 text-sm">{{$payment->site_payment->site->dns_record->server->ip_address}}</p>
+                            @if($payment->site_payment->site->site_dns_setting)
+                                @switch($payment->site_payment->site->site_dns_setting->status)
+                                    @case('pending')
+                                        <span class="text-gray-600 text-sm rounded border border-gray-600 px-2">{{__('pending')}}</span>
+                                        @break
+                                    @case('confirmed')
+                                        <span class="text-gray-600 text-sm rounded border border-gray-600 px-2">{{__('confirmed')}}</span>
+                                        @break
+                                    @default
+                                        <span>{{__('failed')}}</span>
+                                @endswitch
+                            @else
+                                <button class="text-gray-600 text-sm rounded border border-gray-600 px-2" wire:click="confirmed({{$payment->site_payment->site->id}})" wire:confirm="CNAME에 IP4 Address를 입력하셨습니까?" wire:loading.attr="disabled">
+                                    적용완료
+                                </button>
+                            @endif
+                        </div>
                     @else
                         <button x-on:click="$dispatch('set-payment-site', {paymentId: {{$payment->id}} })">url 등록하기</button>
                     @endif

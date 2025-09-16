@@ -37,7 +37,7 @@ class Sites extends Component
     {
         $sites = Site::with(['user', 'last_site_payment', 'dns_record.server'])->whereHas('site_payments', function ($query) {
             $query->whereNull('end_date');
-        })->paginate(10);
+        })->latest()->paginate(10);
         return view('livewire.admin.sites', ['sites' => $sites]);
     }
 }
