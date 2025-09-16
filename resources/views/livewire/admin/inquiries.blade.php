@@ -26,17 +26,13 @@
             </button>
         </div>
         <div class="pt-2 flex flex-wrap items-center gap-2 text-xs border-t">
-            <button wire:click="getStatus(null)" 
-                class="px-3 py-1 rounded {{ $status === null ? 'bg-blue-500 text-white' : 'bg-gray-200' }}">
-                {{ __('all') }}
-            </button>
             <button wire:click="getStatus('new')" 
                 class="px-3 py-1 rounded {{ $status === 'new' ? 'bg-blue-500 text-white' : 'bg-gray-200' }}">
                 {{ __('new') }}
             </button>
-            <button wire:click="getStatus('in_progress')" 
-                class="px-3 py-1 rounded {{ $status === 'in_progress' ? 'bg-blue-500 text-white' : 'bg-gray-200' }}">
-                {{ __('in_progress') }}
+            <button wire:click="getStatus('pending')" 
+                class="px-3 py-1 rounded {{ $status === 'pending' ? 'bg-blue-500 text-white' : 'bg-gray-200' }}">
+                {{ __('pending') }}
             </button>
             <button wire:click="getStatus('waiting')" 
                 class="px-3 py-1 rounded {{ $status === 'waiting' ? 'bg-blue-500 text-white' : 'bg-gray-200' }}">
@@ -54,7 +50,7 @@
     </div>
     
     @if(count($inquiries)>0)
-        <div class="mt-4">
+        <div class="mt-4 space-y-4">
             @foreach($inquiries as $inquiry)
                 <div class="bg-white shadow rounded-xl p-6 space-y-4 w-full" wire:key="{{$inquiry->id}}">
                     <div class="flex justify-between items-center">
@@ -63,14 +59,14 @@
                     </div>
                     <p class="text-gray-600 text-sm">{{$inquiry->message}}</p>
                     <div class="text-xs text-gray-500 space-y-1">
-                        <p><span class="font-medium">Inquiry Type:</span> 2</p>
-                        <p><span class="font-medium">User ID:</span> 2</p>
-                        <p><span class="font-medium">Created At:</span> 2025-09-11 06:06:36</p>
-                        <p><span class="font-medium">Updated At:</span> 2025-09-11 06:06:36</p>
+                        <p><span class="font-medium">Inquiry Type:</span> {{$inquiry->inquiry_type->inquiry_type}}</p>
+                        <p><span class="font-medium">User Name:</span> {{$inquiry->user->name}}</p>
+                        <p><span class="font-medium">Created At:</span> {{$inquiry->created_at}}</p>
+                        <p><span class="font-medium">Updated At:</span> {{$inquiry->updated_at}}</p>
                     </div>
                     <div class="flex items-center justify-end gap-2 text-sm">
                         <button wire:click="setStatus('new', {{$inquiry->id}})">{{__('new')}}</button>
-                        <button wire:click="setStatus('in_progress', {{$inquiry->id}})">{{__('in_progress')}}</button>
+                        <button wire:click="setStatus('pending', {{$inquiry->id}})">{{__('pending')}}</button>
                         <button wire:click="setStatus('waiting', {{$inquiry->id}})">{{__('waiting')}}</button>
                         <button wire:click="setStatus('resolved', {{$inquiry->id}})">{{__('resolved')}}</button>
                         <button wire:click="setStatus('closed', {{$inquiry->id}})">{{__('closed')}}</button>

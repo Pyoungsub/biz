@@ -83,12 +83,15 @@ class ContactForm extends Component
             'message' => 'required|min:3',
         ]);
         // Generate a 6-digit verification code
-        $code = rand(100000, 999999);
+        $code = env('APP_DEBUG') === true ? 123456 : rand(100000, 999999);
         // Store the hashed code in cache for 5 minutes
         $cacheKey = 'inquiry_verification:' . $validated['email'];
         Cache::put($cacheKey, Hash::make($code), now()->addMinutes(5));
         // Send the code via email
-        Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
+        if(!env('APP_DEBUG'))
+        {
+            Mail::to($validated['email'])->send(new \App\Mail\SendVerificationCode($code, $validated['name']));
+        }
         $this->email = $validated['email'];
         $this->showVerificationForm = true;
     }

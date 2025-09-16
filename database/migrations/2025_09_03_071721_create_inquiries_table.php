@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inquiry_type_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('case_manager_id')->nullable()->default(null)->constrained('users')->onDelete('set null');
             $table->enum('status', [
                 'new',        // 신규
-                'in_progress',// 처리중
+                'pending',// 대기중 (관리자 응답 필요)
                 'waiting',    // 대기중 (고객 응답 필요)
                 'resolved',   // 해결됨
                 'closed'      // 종결됨
