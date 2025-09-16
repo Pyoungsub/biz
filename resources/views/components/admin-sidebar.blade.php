@@ -3,8 +3,8 @@
     :class="{'-translate-x-full': !open, 'translate-x-0': open}"
 >
     <!-- Logo -->
-    <div class="flex items-center justify-between h-16 border-b border-gray-300 px-4">
-        <h1 class="text-xl font-bold text-gray-800">Admin Panel</h1>
+    <div class="flex items-center justify-between h-16 border-b border-gray-300 px-2 sm:px-4">
+        <a href="/" class=""><x-application-logo /></a>
         <button @click="open = !open" class="block sm:hidden text-gray-700 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
