@@ -28,7 +28,7 @@
             @endforeach
         </div>
     @else
-        <div class="bg-white shadow rounded-xl p-6 space-y-4 w-full">
+        <div class="mt-4 bg-white shadow rounded-xl p-6 space-y-4 w-full">
             {{__('no records')}}
         </div>
     @endif

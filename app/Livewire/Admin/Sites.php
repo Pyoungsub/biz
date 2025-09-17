@@ -40,7 +40,7 @@ class Sites extends Component
         ->doesntHave('site_dns_setting')
         ->whereHas('site_payments', function ($query) {
             $query->whereNull('end_date');
-        })->latest()->paginate(5);
+        })->latest()->paginate(20);
         return view('livewire.admin.sites', ['sites' => $sites]);
     }
 }

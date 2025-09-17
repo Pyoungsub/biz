@@ -1,9 +1,15 @@
-<div class="">
+<div class=""
+    x-data="{
+        dateTransform(date) {
+            return date ? DateTime.fromSQL(date).toFormat('yyyy-MM-dd') : '대기중';
+        }
+    }"
+>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Plans</h2>
     </x-slot>
     <!-- List -->
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div wire:loading.flex class="justify-center py-12">
             <div class="h-8 w-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
         </div>
@@ -25,8 +31,8 @@
                                         @break
                                     @case('confirmed')
                                         <div class="">
-                                            <p class="text-gray-600 text-sm">시작일: {{ $payment->site_payment->site->last_site_payment?->start_date ?? '대기중' }}</p>
-                                            <p class="text-gray-600 text-sm">종료일: {{ $payment->site_payment->site->last_site_payment?->end_date ?? '대기중' }}</p>
+                                            <p class="text-gray-600 text-sm">시작일: <span x-text="dateTransform('{{$payment->site_payment->site->last_site_payment->start_date}}')"></span></p>
+                                            <p class="text-gray-600 text-sm">종료일: <span x-text="dateTransform('{{$payment->site_payment->site->last_site_payment->end_date}}')"></span></p>
                                         </div>
                                         @break
                                     @default

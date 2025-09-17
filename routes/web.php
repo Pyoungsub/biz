@@ -26,18 +26,26 @@ Route::middleware([
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
-        Route::get('/admin/sites', function () {
-            return view('admin.sites');
-        })->name('admin.sites');
+        Route::get('/admin/servers', function () {
+            return view('admin.servers');
+        })->name('admin.servers');
+
+        Route::get('/admin/sites/dns-completed', function () {
+            return view('admin.sites.dns-completed');
+        })->name('admin.sites.dns-completed');
+        Route::get('/admin/sites/site-payments', function () {
+            return view('admin.sites.site-payments');
+        })->name('admin.sites.site-payments');
+        Route::get('/admin/sites/expired-sites', function () {
+            return view('admin.sites.expired-sites');
+        })->name('admin.sites.expired-sites');
+
         Route::get('/admin/plans', function () {
             return view('admin.plans');
         })->name('admin.plans');
         Route::get('/admin/inquiries', function () {
             return view('admin.inquiries');
         })->name('admin.inquiries');
-        Route::get('/admin/servers', function () {
-            return view('admin.servers');
-        })->name('admin.servers');
     });
 });
 

@@ -1,6 +1,9 @@
 <aside 
     class="fixed inset-y-0 left-0 w-64 bg-white/80 backdrop-blur-md border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out md:translate-x-0 z-50"
     :class="{'-translate-x-full': !open, 'translate-x-0': open}"
+    x-data="{
+        currentRoute: '{{ Route::currentRouteName() }}' 
+    }"
 >
     <!-- Logo -->
     <div class="flex items-center justify-between h-16 border-b border-gray-300 px-2 sm:px-4">
@@ -42,10 +45,23 @@
             <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
             Servers
         </a>
-        <a href="{{route('admin.sites')}}" class="flex items-center px-6 py-3 rounded-lg text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
-            <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            Sites
-        </a>
+        <div>
+            <button @click="activeMenu === 'sites' ? activeMenu = null : activeMenu = 'sites'" 
+                class="flex items-center w-full px-6 py-3 text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 rounded-lg transition-colors focus:outline-none">
+                <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.788.626 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Sites
+                <svg :class="activeMenu === 'sites' || ['admin.sites.dns-completed', 'admin.sites.site-payments', 'admin.sites.expired-sites'].includes(currentRoute) ? 'rotate-90' : ''" class="w-4 h-4 ml-auto transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+            <div x-show="activeMenu === 'sites' || ['admin.sites.dns-completed', 'admin.sites.site-payments', 'admin.sites.expired-sites'].includes(currentRoute)" x-transition class="ml-12 mt-1 space-y-1">
+                <a href="{{route('admin.sites.dns-completed')}}" class="block px-4 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-500" x-bind:class="currentRoute == 'admin.sites.dns-completed' ? 'text-indigo-500': 'text-gray-600'">DNS complited</a>
+                <a href="{{route('admin.sites.site-payments')}}" class="block px-4 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-500" x-bind:class="currentRoute == 'admin.sites.site-payments' ? 'text-indigo-500': 'text-gray-600'">Set Period</a>
+                <a href="{{route('admin.sites.expired-sites')}}" class="block px-4 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-500" x-bind:class="currentRoute == 'admin.sites.expired-sites' ? 'text-indigo-500': 'text-gray-600'">Expired Sites</a>
+            </div>
+        </div>
         <a href="{{route('admin.plans')}}" class="flex items-center px-6 py-3 rounded-lg text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
             <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
             Plans

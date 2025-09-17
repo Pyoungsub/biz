@@ -7,8 +7,9 @@ use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 use App\Models\Server;
 use App\Models\Site;
+use Carbon\Carbon;
 
-class SitePayments extends Component
+class ExpiredSites extends Component
 {
     use WithPagination, WithoutUrlPagination;
     public $servers = [];
@@ -53,8 +54,10 @@ class SitePayments extends Component
             $query->where('status', 'confirmed');
         })
         ->whereHas('site_payments', function ($query) {
-            $query->whereNull('end_date');
-        })->latest()->paginate(20);
-        return view('livewire.admin.site-payments', ['sites' => $sites]);
+            $query->whereDate('end_date', '<', Carbon::today());
+        })
+        ->latest()
+        ->paginate(20);
+        return view('livewire.admin.expired-sites', ['sites' => $sites]);
     }
 }
